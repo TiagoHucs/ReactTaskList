@@ -39,10 +39,17 @@ const App = () => {
     setTasks(newTasks);
   }
 
+  const handleTaskDelete  = (taskId) => {
+    const newTasks = tasks.filter(t => t.id !== taskId);
+    setTasks(newTasks);
+  }
+
   return (
     <div className="container">
       <AddTask handleTaskAddition={handleTaskAddition} />
-      <Tasks tasks={tasks} handleTaskClick={handleTaskClick} />
+      <Tasks tasks={tasks} 
+      handleTaskClick={handleTaskClick}
+      handleTaskDelete={handleTaskDelete} />
     </div>
   )
 }
