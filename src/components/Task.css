@@ -14,8 +14,10 @@
     cursor: pointer;
 }
 
-.task-remove-btn{
+.task-btn{
     background-color: #444;
     color: chartreuse;
     cursor: pointer;
+    position: static;
+    border: none;
 }

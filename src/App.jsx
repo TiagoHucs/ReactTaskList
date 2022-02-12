@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 import Tasks from "./components/Tasks";
 import './App.css';
 import AddTask from "./components/AddTask";
+import TaskDetails from "./components/TaskDetails";
 
 const App = () => {
   const [tasks, setTasks] = useState([
@@ -30,7 +32,7 @@ const App = () => {
 
   const handleTaskClick = (taskId) => {
     const newTasks = tasks.map(t => {
-      if (t.id == taskId) {
+      if (t.id === taskId) {
         return { ...t, completed: !t.completed };
       } else {
         return t;
@@ -39,19 +41,34 @@ const App = () => {
     setTasks(newTasks);
   }
 
-  const handleTaskDelete  = (taskId) => {
+  const handleTaskDelete = (taskId) => {
     const newTasks = tasks.filter(t => t.id !== taskId);
     setTasks(newTasks);
   }
 
   return (
     <div className="container">
-      <AddTask handleTaskAddition={handleTaskAddition} />
-      <Tasks tasks={tasks} 
-      handleTaskClick={handleTaskClick}
-      handleTaskDelete={handleTaskDelete} />
+      <h1>Aplicação</h1>
+      <Router>
+        <Routes>
+          <Route path="/" element={
+            <>
+              <AddTask handleTaskAddition={handleTaskAddition} />
+              <Tasks tasks={tasks}
+                handleTaskClick={handleTaskClick}
+                handleTaskDelete={handleTaskDelete} />
+            </>
+          } />
+          <Route path="/details" element={<TaskDetails/>}/>
+        </Routes>
+      </Router>
     </div>
+
   )
+}
+
+function Home() {
+  return <h2>Home</h2>;
 }
 
 export default App;
