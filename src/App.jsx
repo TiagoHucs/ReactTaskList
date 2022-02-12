@@ -48,18 +48,18 @@ const App = () => {
 
   return (
     <div className="container">
-      <h1>Aplicação</h1>
       <Router>
         <Routes>
           <Route path="/" element={
             <>
+              <h1>Tarefas</h1>
               <AddTask handleTaskAddition={handleTaskAddition} />
               <Tasks tasks={tasks}
                 handleTaskClick={handleTaskClick}
                 handleTaskDelete={handleTaskDelete} />
             </>
           } />
-          <Route path="/details" element={<TaskDetails/>}/>
+          <Route path="/:taskTitle" element={<TaskDetails/>}/>
         </Routes>
       </Router>
     </div>
