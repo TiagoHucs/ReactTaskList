@@ -3,17 +3,23 @@ import "./TaskDetails.css";
 
 
 import Button from "./Button";
-import { Link, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+
 
 const TaskDetails = () => {
     const params = useParams();
-    console.log(params)
+    const navigate = useNavigate();
+
+    const handleClickBtnBack = () => {
+       navigate(-1);
+    }
+
     return <>
         <h2>{params.taskTitle}</h2>
         <div className="back-button-container">
-        <Link to="/">
-            <Button>Voltar</Button>
-        </Link>
+  
+            <Button onClick={handleClickBtnBack}>Voltar</Button>
+  
         </div>
         <div className="task-details-container">
             <p>O que temos que ter sempre em mente é que a mobilidade dos capitais internacionais estende o alcance e a importância das diretrizes de desenvolvimento para o futuro.</p>
