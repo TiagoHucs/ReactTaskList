@@ -14,6 +14,12 @@
     cursor: pointer;
 }
 
+.task-btn-container{
+    width: 30%;
+    display: flex;
+    justify-content: flex-end;
+}
+
 .task-btn{
     background-color: #444;
     color: chartreuse;

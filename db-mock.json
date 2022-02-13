@@ -1,0 +1,13 @@
+{
+    "tasks": [
+      { "id": 1, "title": "Cozinhar" },
+      { "id": 2, "title": "Lavar" },
+      { "id": 3, "title": "Passar" },
+      { "id": 4, "title": "Limpar" }
+    ],
+    "comments": [
+      { "id": 1, "body": "some comment", "postId": 1 }
+    ],
+    "profile": { "name": "typicode" }
+  }
+

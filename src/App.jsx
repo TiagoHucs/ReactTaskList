@@ -1,32 +1,36 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-
+import  axios from "axios";
 import Tasks from "./components/Tasks";
 import './App.css';
 import AddTask from "./components/AddTask";
 import TaskDetails from "./components/TaskDetails";
 
 const App = () => {
-  const [tasks, setTasks] = useState([
-    {
-      id: '1',
-      title: 'Estudar',
-      completed: true
-    },
-    {
-      id: '2',
-      title: 'Jogar',
-      completed: false
+  const [tasks, setTasks] = useState([]);
+
+  useEffect(()=>{
+    const fetchTasks = async () => {
+      const {data} = await axios.get('http://localhost:3004/tasks');
+      console.log(data);
+      setTasks(data);
     }
-  ]);
+
+    fetchTasks();
+  },[]);
+
 
   const handleTaskAddition = (taskTitle) => {
-    const newTasks = [...tasks, {
+    const newTask = {
       title: taskTitle,
       id: uuidv4(),
       completed: false
-    }]
+    };
+
+    //await axios.post('http://localhost:3004/tasks',newTask);
+
+    const newTasks = [...tasks, newTask]
     setTasks(newTasks);
   }
 
