@@ -62,7 +62,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={
             <>
-              <h1>Tarefas</h1>
+              <img src="./logo-title.png" class="center"/>
               <AddTask handleTaskAddition={handleTaskAddition} />
               <Tasks tasks={tasks}
                 handleTaskClick={handleTaskClick}

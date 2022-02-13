@@ -1,3 +1,4 @@
+<img src="img1.png" width="30%" align="right" />
 # ReactTaskList
 
 Project to exercite ReactJS
@@ -13,6 +14,8 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
+
+<img src="img2.png" width="30%" align="right" />
 
 ### `npm run mockdb`
 
