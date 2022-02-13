@@ -28,7 +28,13 @@ const App = () => {
       completed: false
     };
 
-    //await axios.post('http://localhost:3004/tasks',newTask);
+    axios.post('http://localhost:3004/tasks', newTask)
+    .then(function (response) {
+      console.log(response);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
 
     const newTasks = [...tasks, newTask]
     setTasks(newTasks);
