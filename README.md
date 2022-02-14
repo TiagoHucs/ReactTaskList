@@ -17,6 +17,7 @@ The page will reload when you make changes.\
 You may also see any lint errors in the console.
 
 <img src="https://github.com/TiagoHucs/ReactTaskList/blob/master/public/img2.PNG" width="30%" align="right" />
+
 ### `npm run mockdb`
 
 Runs a mock database in with json-server.\
