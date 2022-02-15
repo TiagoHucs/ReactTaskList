@@ -26,14 +26,17 @@ app.post('/tasks', (req, res) => {
     const { id, title, completed } = req.body
     const task = { id, title, completed }
     tasks.push(task);
+    console.log(`Added: ${task.id}`)
     return res.status(201).json(task);
 })
 
 app.get('/tasks', (req, res) => {
+    console.log(`GetAll`)
     return res.status(200).json(tasks);
 })
 
 app.get('/tasks/:taskId', (req, res) => {
+    console.log(`GetOne`)
     const { taskId } = req.params;
     const task = tasks.find((t) => t.id === taskId);
     if (!task) res.status(404).json("NOT FOUND");
@@ -41,7 +44,6 @@ app.get('/tasks/:taskId', (req, res) => {
 })
 
 app.delete('/tasks/:taskId', (req, res) => {
-    console.log('deleting')
     const { taskId } = req.params;
     console.log(`deleting ${taskId}`)
     const filterTasks = tasks.filter((t) => t.id !== taskId);
@@ -52,6 +54,7 @@ app.delete('/tasks/:taskId', (req, res) => {
 app.patch('/tasks/:taskId', (req, res) => {
     const { title, completed } = req.body
     const { taskId } = req.params;
+    console.log(`Updating ${taskId}`)
     const task = tasks.find((t) => t.id === taskId);
     if (!task) res.status(404).json("NOT FOUND");
     task.title = title ? title : task.title;

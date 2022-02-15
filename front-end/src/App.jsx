@@ -12,13 +12,7 @@ const App = () => {
   const API = 'http://localhost:3333/tasks'
 
   useEffect(()=>{
-    const fetchTasks = async () => {
-      const {data} = await axios.get(API);
-      console.log(data);
-      setTasks(data);
-    }
-
-    fetchTasks();
+    get();
   },[]);
 
 
@@ -31,7 +25,7 @@ const App = () => {
 
     axios.post(API, newTask)
     .then(function (response) {
-      console.log(response);
+      get();
     })
     .catch(function (error) {
       console.log(error);
@@ -39,12 +33,30 @@ const App = () => {
 
   }
 
+  const get = async () => {
+    const {data} = await axios.get(API);
+    setTasks(data);
+  }
+
   const handleTaskClick = (taskId) => {
-    axios.patch(`${API}/${taskId}`,{ completed: true});
+    axios.patch(`${API}/${taskId}`,{ completed: true})
+    .then(function (response) {
+      get();
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+
   }
 
   const handleTaskDelete = (taskId) => {
-    axios.delete(`${API}/${taskId}`);
+    axios.delete(`${API}/${taskId}`)
+    .then(function (response) {
+      get();
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
   }
 
   return (
