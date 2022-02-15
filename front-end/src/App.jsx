@@ -9,10 +9,11 @@ import TaskDetails from "./components/TaskDetails";
 
 const App = () => {
   const [tasks, setTasks] = useState([]);
+  const API = 'http://localhost:3333/tasks'
 
   useEffect(()=>{
     const fetchTasks = async () => {
-      const {data} = await axios.get('http://localhost:3004/tasks');
+      const {data} = await axios.get(API);
       console.log(data);
       setTasks(data);
     }
@@ -28,7 +29,7 @@ const App = () => {
       completed: false
     };
 
-    axios.post('http://localhost:3004/tasks', newTask)
+    axios.post(API, newTask)
     .then(function (response) {
       console.log(response);
     })
@@ -36,24 +37,14 @@ const App = () => {
       console.log(error);
     });
 
-    const newTasks = [...tasks, newTask]
-    setTasks(newTasks);
   }
 
   const handleTaskClick = (taskId) => {
-    const newTasks = tasks.map(t => {
-      if (t.id === taskId) {
-        return { ...t, completed: !t.completed };
-      } else {
-        return t;
-      }
-    })
-    setTasks(newTasks);
+    axios.patch(`${API}/${taskId}`,{ completed: true});
   }
 
   const handleTaskDelete = (taskId) => {
-    const newTasks = tasks.filter(t => t.id !== taskId);
-    setTasks(newTasks);
+    axios.delete(`${API}/${taskId}`);
   }
 
   return (
@@ -62,7 +53,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={
             <>
-              <img src="./logo-title.png" class="center"/>
+              <img src="./logo-title.png" className="center"/>
               <AddTask handleTaskAddition={handleTaskAddition} />
               <Tasks tasks={tasks}
                 handleTaskClick={handleTaskClick}

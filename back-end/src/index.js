@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors')
 
 //fake database
 let tasks = [
@@ -19,6 +20,7 @@ const app = express();
 
 //aplicar middlewares
 app.use(express.json());
+app.use(cors());
 
 app.post('/tasks', (req, res) => {
     const { id, title, completed } = req.body
@@ -39,7 +41,9 @@ app.get('/tasks/:taskId', (req, res) => {
 })
 
 app.delete('/tasks/:taskId', (req, res) => {
+    console.log('deleting')
     const { taskId } = req.params;
+    console.log(`deleting ${taskId}`)
     const filterTasks = tasks.filter((t) => t.id !== taskId);
     tasks = filterTasks;
     return res.status(204).json("DELETED");
