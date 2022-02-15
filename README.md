@@ -1,27 +1,23 @@
-<img src="https://github.com/TiagoHucs/ReactTaskList/blob/master/public/img1.PNG" width="30%" align="right" />
 
 # ReactTaskList
-
 Project to exercite ReactJS
 
-## Scripts
-
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
+---
+### `FRONT-END`
+Access /front-end folder and start app running:
+```
+npm start
+```
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+---
+### `BACK-END`
+Access /back-end folder and start server running:
+```
+npm run server
+```
+React app will consumes api in http://localhost:3333 to view it in your browser.
 
-<img src="https://github.com/TiagoHucs/ReactTaskList/blob/master/public/img2.PNG" width="30%" align="right" />
+---
 
-### `npm run mockdb`
-
-Runs a mock database in with json-server.\
-Open [http://localhost:3004/tasks](http://localhost:3004/tasks) to view it in your browser.
-
-You need json-server installed.
-Open [https://www.npmjs.com/package/json-server](https://www.npmjs.com/package/json-server) to view how to install and use.
+<img src="https://github.com/TiagoHucs/ReactTaskList/blob/master/img1.PNG" width="30%"/><img src="https://github.com/TiagoHucs/ReactTaskList/blob/master/img2.PNG" width="30%"/>
