@@ -25,6 +25,7 @@ const App = () => {
 
     axios.post(API, newTask)
     .then(function (response) {
+      console.log(`POST`)
       get();
     })
     .catch(function (error) {

@@ -1,28 +1,11 @@
-const express = require('express');
-const cors = require('cors')
+import { Router } from 'express';
 
-//fake database
-let tasks = [
-    {
-        "id": "1",
-        "title": "Primeira atividade",
-        "completed": false
-    },
-    {
-        "id": "2",
-        "title": "Outra atividade",
-        "completed": true
-    }
-];
+const router = Router();
 
-//criar app
-const app = express();
+let tasks: any[] = [];
 
-//aplicar middlewares
-app.use(express.json());
-app.use(cors());
-
-app.post('/tasks', (req, res) => {
+router.post('/tasks', (req, res) => {
+    console.log(`post`)
     const { id, title, completed } = req.body
     const task = { id, title, completed }
     tasks.push(task);
@@ -30,12 +13,12 @@ app.post('/tasks', (req, res) => {
     return res.status(201).json(task);
 })
 
-app.get('/tasks', (req, res) => {
+router.get('/tasks', (req, res) => {
     console.log(`GetAll`)
     return res.status(200).json(tasks);
 })
 
-app.get('/tasks/:taskId', (req, res) => {
+router.get('/tasks/:taskId', (req, res) => {
     console.log(`GetOne`)
     const { taskId } = req.params;
     const task = tasks.find((t) => t.id === taskId);
@@ -43,7 +26,7 @@ app.get('/tasks/:taskId', (req, res) => {
     return res.status(200).json(task);
 })
 
-app.delete('/tasks/:taskId', (req, res) => {
+router.delete('/tasks/:taskId', (req, res) => {
     const { taskId } = req.params;
     console.log(`deleting ${taskId}`)
     const filterTasks = tasks.filter((t) => t.id !== taskId);
@@ -51,7 +34,7 @@ app.delete('/tasks/:taskId', (req, res) => {
     return res.status(204).json("DELETED");
 })
 
-app.patch('/tasks/:taskId', (req, res) => {
+router.patch('/tasks/:taskId', (req, res) => {
     const { title, completed } = req.body
     const { taskId } = req.params;
     console.log(`Updating ${taskId}`)
@@ -62,5 +45,4 @@ app.patch('/tasks/:taskId', (req, res) => {
     return res.status(200).json(task);
 })
 
-//mandar server rodar
-app.listen(3333, () => console.log('Server is running...'));
+export { router };
