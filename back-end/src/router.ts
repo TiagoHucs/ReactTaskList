@@ -1,24 +1,14 @@
 import { Router } from 'express';
 import { createTaskController } from './useCases/CreateTask';
+import { listTasksController, listTasksUseCase } from './useCases/ListTasks';
 const router = Router();
-
-//let tasks: any[] = [];
 
 router.post('/tasks', (req, res) => {
     return createTaskController.handle(req, res);
-
-    /*     console.log(`post`)
-    const { id, title, completed } = req.body
-    const task = { id, title, completed }
-    tasks.push(task);
-    console.log(`Added: ${task.id}`)
-    return res.status(201).json(task); */
 })
 
 router.get('/tasks', (req, res) => {
-/*     console.log(`GetAll`)
-    return res.status(200).json(tasks); */
-    return createTaskController.findAll(req, res);
+    return listTasksController.handle(req, res);
 })
 
 router.get('/tasks/:taskId', (req, res) => {
