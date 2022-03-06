@@ -19,4 +19,9 @@ export class CreateTaskUseCase {
 
         this.tasksRepository.save(task);
     }
+
+    async get(){
+        const tks = await this.tasksRepository.findAll();
+        return tks;
+    }
 }
