@@ -10,7 +10,6 @@ export class CreateTaskUseCase {
 
     async execute(data: ICreateTaskRequestDTO) {
         const taskAlreadyExists = await this.tasksRepository.findByTitle(data.title);
-
         if (taskAlreadyExists) {
             throw new Error("Task already exists");
         }

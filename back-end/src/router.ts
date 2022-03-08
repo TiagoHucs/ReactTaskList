@@ -1,6 +1,6 @@
 import { Router } from 'express';
-import { createTaskController } from './useCases/CreateTask';
-import { listTasksController, listTasksUseCase } from './useCases/ListTasks';
+import { createTaskController, listTasksController } from './useCases';
+
 const router = Router();
 
 router.post('/tasks', (req, res) => {
@@ -12,7 +12,7 @@ router.get('/tasks', (req, res) => {
 })
 
 router.get('/tasks/:taskId', (req, res) => {
-/*     console.log(`GetOne`)
+/*    
     const { taskId } = req.params;
     const task = tasks.find((t) => t.id === taskId);
     if (!task) res.status(404).json("NOT FOUND");
@@ -21,7 +21,6 @@ router.get('/tasks/:taskId', (req, res) => {
 
 router.delete('/tasks/:taskId', (req, res) => {
 /*     const { taskId } = req.params;
-    console.log(`deleting ${taskId}`)
     const filterTasks = tasks.filter((t) => t.id !== taskId);
     tasks = filterTasks;
     return res.status(204).json("DELETED"); */
@@ -30,7 +29,6 @@ router.delete('/tasks/:taskId', (req, res) => {
 router.patch('/tasks/:taskId', (req, res) => {
 /*     const { title, completed } = req.body
     const { taskId } = req.params;
-    console.log(`Updating ${taskId}`)
     const task = tasks.find((t) => t.id === taskId);
     if (!task) res.status(404).json("NOT FOUND");
     task.title = title ? title : task.title;
